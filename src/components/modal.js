@@ -1,27 +1,29 @@
-// Функция открытия превью
-export function openPreviewPopup(name, link) {
-  previewPopupImage.src = link;
-  previewPopupImage.alt = name;
-  previewPopupCaption.textContent = name;
-
-  openPopup(".popup_type_image");
-}
-
 // Функция открытия попапа
-export function openPopup(popupSelector) {
-  let popupElement = document.querySelector(popupSelector);
-  popupElement.classList.add("popup_is-opened");
-  popupElement.classList.add("popup_is-animated");
+export function openPopup(modal) {
+  modal.classList.add("popup_is-opened");
+  document.addEventListener("keydown", handleCloseModalByEsc);
 }
 
 // Функция для закрытия попапа
-export function closePopup() {
-  // Поиск открытых попапов
-  let openPopups = document.querySelectorAll(".popup_is-opened");
-  // Перебор открытых попапов с помощью цикла for и удаление класс popup_is_opened
-  for (let i = 0; i < openPopups.length; i++) {
-    let popup = openPopups[i];
-    popup.classList.remove("popup_is-opened");
-    popupElement.classList.remove("popup_is-animated");
+export function closePopup(modal) {
+  modal.classList.remove("popup_is-opened");
+  document.removeEventListener("keydown", handleCloseModalByEsc);
+}
+
+//функция для того, чтобы происходило закрытие попапов при нажатии на оверлей
+export function closeOverlayClick(event) {
+  // Находим  (попап) элемента, по которому был клик
+  const popup = event.currentTarget.closest(".popup");
+  // Проверяем, был ли клик по фону попапа
+  if (event.target === popup) {
+    const openedPopup = document.querySelector(".popup_is-opened");
+    closePopup(openedPopup);
+  }
+}
+
+export function handleCloseModalByEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_is-opened");
+    closePopup(openedPopup);
   }
 }
