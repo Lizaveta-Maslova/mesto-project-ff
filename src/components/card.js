@@ -10,15 +10,15 @@ export const createCard = function (
 
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const popupNewCard = document.querySelector(".popup_type_new-card");
   const deleteButton = cardElement.querySelector(".card__delete-button");
+  const likeButton = cardElement.querySelector(".card__like-button");
 
   // Наполняем содержимым
   cardImage.src = card.link;
   cardImage.alt = card.name;
   cardTitle.textContent = card.name;
 
+  // Обработчик для удаления карточки
   deleteButton.addEventListener("click", function () {
     handleDelete(cardElement);
   });
@@ -27,11 +27,6 @@ export const createCard = function (
   likeButton.addEventListener("click", function () {
     handleLike(likeButton);
   });
-
-  // // Обработчик для удаления карточки
-  // deleteButton.addEventListener("click", function () {
-  //   handleDelete(cardElement);
-  // });
 
   // Обработчик для открытия попапа с изображением
   cardImage.addEventListener("click", function () {
@@ -48,5 +43,11 @@ export const handleLike = function (likeButton) {
 
 // Функция удаления карточки
 export const removeCard = function (cardElement) {
+  cardElement.remove();
+};
+
+// Функция удаления карточки
+export const handleDelete = function (cardElement) {
+  const deleteButton = cardElement.querySelector(".card__delete-button");
   cardElement.remove();
 };

@@ -1,9 +1,9 @@
 import "./pages/index.css"; // добавьте импорт главного файла стилей
 import {
   createCard,
+  handleDelete,
   handleLike,
   removeCard,
-  handleDelete,
 } from "./components/card.js";
 import {
   openPopup,
@@ -23,7 +23,6 @@ const previewPopupCaption = previewPopup.querySelector(".popup__caption");
 const editButton = document.querySelector(".profile__edit-button");
 const newCardButton = document.querySelector(".profile__add-button");
 const closeButtons = document.querySelectorAll(".popup__close");
-const deleteButton = cardElement.querySelector(".card__delete-button");
 
 // Нахожу форму в DOM
 const editformElement = document.forms["edit-profile"];
