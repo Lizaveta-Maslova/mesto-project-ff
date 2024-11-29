@@ -16,14 +16,13 @@ export function closeOverlayClick(event) {
   const popup = event.currentTarget.closest(".popup");
   // Проверяем, был ли клик по фону попапа
   if (event.target === popup) {
-    const openedPopup = document.querySelector(".popup_is-opened");
-    closePopup(openedPopup);
+    closePopup(popup);
   }
 }
 
 export function handleCloseModalByEsc(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".popup_is-opened");
-    closePopup(openedPopup);
+    closePopup(openedPopup); // Закрываю все открытые попапы
   }
 }

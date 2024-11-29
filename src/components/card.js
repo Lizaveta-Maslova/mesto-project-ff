@@ -1,7 +1,7 @@
 // Функция создания карточки
 export const createCard = function (
   card,
-  handleDelete,
+  removeCard,
   handleLike,
   openPreviewPopup
 ) {
@@ -10,18 +10,12 @@ export const createCard = function (
 
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
   const likeButton = cardElement.querySelector(".card__like-button");
 
   // Наполняем содержимым
   cardImage.src = card.link;
   cardImage.alt = card.name;
   cardTitle.textContent = card.name;
-
-  // Обработчик для удаления карточки
-  deleteButton.addEventListener("click", function () {
-    handleDelete(cardElement);
-  });
 
   // Обработчик для лайка
   likeButton.addEventListener("click", function () {
@@ -46,8 +40,3 @@ export const removeCard = function (cardElement) {
   cardElement.remove();
 };
 
-// Функция удаления карточки
-export const handleDelete = function (cardElement) {
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-  cardElement.remove();
-};
