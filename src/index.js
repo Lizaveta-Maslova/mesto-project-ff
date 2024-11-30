@@ -1,13 +1,9 @@
 import "./pages/index.css"; // добавьте импорт главного файла стилей
-import {
-  createCard,
-  handleLike,
-  removeCard
-} from "./components/card.js";
+import { createCard, handleLike, removeCard } from "./components/card.js";
 import {
   openPopup,
   closePopup,
-  closeOverlayClick
+  closeOverlayClick,
 } from "./components/modal.js";
 import { initialCards } from "./components/cards.js";
 
@@ -41,9 +37,9 @@ const profileJob = document.querySelector(".profile__description"); // селе�
 const popupEdit = document.querySelector(".popup_type_edit");
 const popupNewCard = document.querySelector(".popup_type_new-card");
 
-const popupList = document.querySelectorAll(".popup")
+const popupList = document.querySelectorAll(".popup");
 
-const renderCards = function (cardDataList, handleDelete) {
+const renderCards = function (cardDataList, removeCard) {
   cardDataList.forEach(function (card) {
     const cardElement = createCard(
       card,
@@ -68,7 +64,7 @@ function openPreviewPopup(name, link) {
 }
 
 // Обработчик «отправки» формы
-function ediitHandleFormSubmit(evt) {
+function handleEditProfileFormSubmit(evt) {
   evt.preventDefault(); // отмена стандартной отправки формы.
   // О том, как это делать, расскажем позже.
 
@@ -82,7 +78,7 @@ function ediitHandleFormSubmit(evt) {
   closePopup(popupEdit);
 }
 
-function handleEditProfileFormSubmit(evt) {
+function handlePlaceAddFormSubmit(evt) {
   evt.preventDefault();
   const newCard = {
     link: urlInput.value,
@@ -96,6 +92,8 @@ function handleEditProfileFormSubmit(evt) {
   );
   placesList.prepend(cardPlace);
 
+  formAddPlace.reset();
+
   closePopup(popupNewCard);
 }
 
@@ -107,21 +105,14 @@ newCardButton.addEventListener("click", function () {
   openPopup(popupNewCard); // попап добавления новой карточки
 });
 
-// Вешаю бработчик на клик по каждой кнопке закрытия
 for (let i = 0; i < closeButtons.length; i++) {
-  let closeButton = closeButtons[i]; // Получаю текущую кнопку закрытия
+  let closeButton = closeButtons[i];
+  // Находим попап, к которому относится крестик
+  const popup = closeButton.closest(".popup");
   closeButton.addEventListener("click", function () {
-    const openedPopup = document.querySelector(".popup_is-opened");
-    closePopup(openedPopup); // Закрываю все открытые попапы
+    closePopup(popup);
   });
 }
-
-// let closeButton = closeButtons[i];
-// // Находим попап, к которому относится крестик
-// const popup = closeButton.closest("") 
-// closeButton.addEventListener("click", function () {
-//   closePopup(popup);
-// });
 
 // Вешаем обработчик на клик по каждому попапу
 popupList.forEach((popup) => {
@@ -130,6 +121,6 @@ popupList.forEach((popup) => {
 
 // Прикрепляю обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-editFormElement.addEventListener("submit", ediitHandleFormSubmit);
+editFormElement.addEventListener("submit", handleEditProfileFormSubmit);
 
-formAddPlace.addEventListener("submit", handleEditProfileFormSubmit);
+formAddPlace.addEventListener("submit", handlePlaceAddFormSubmit);
