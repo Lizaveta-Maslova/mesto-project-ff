@@ -20,9 +20,6 @@ const closeButtons = document.querySelectorAll(".popup__close");
 
 // Нахожу форму в DOM
 const editFormElement = document.forms["edit-profile"];
-// Нахожу 1 форму в DOM
-const nameInput = document.querySelector(".popup__input_type_name");
-const jobInput = document.querySelector(".popup__input_type_description");
 
 // Нахожу 2 форму в DOM
 const formAddPlace = document.forms["new-place"];
@@ -32,7 +29,11 @@ const placeInput = document.querySelector(".popup__input_type_card-name"); // н
 
 // Выбираю элементы, куда должны быть вставлены значения полей
 const profileName = document.querySelector(".profile__title"); // селектор для элемента имени профиля
-const profileJob = document.querySelector(".profile__description"); // селектор для элемента описания профиля
+const profileJob = document.querySelector(".profile__description"); // селектор для элемента описания профил
+
+// Нахожу 1 форму в DOM
+const nameInput = document.querySelector(".popup__input_type_name");
+const jobInput = document.querySelector(".popup__input_type_description");
 
 const popupEdit = document.querySelector(".popup_type_edit");
 const popupNewCard = document.querySelector(".popup_type_new-card");
@@ -63,21 +64,6 @@ function openPreviewPopup(name, link) {
   openPopup(previewPopup);
 }
 
-// Обработчик «отправки» формы
-function handleEditProfileFormSubmit(evt) {
-  evt.preventDefault(); // отмена стандартной отправки формы.
-  // О том, как это делать, расскажем позже.
-
-  // Получаю значение полей jobInput и nameInput из свойства value
-  const nameValue = nameInput.value;
-  const jobValue = jobInput.value;
-
-  // Вставляю новые значения с помощью textContent
-  profileName.textContent = nameValue;
-  profileJob.textContent = jobValue;
-  closePopup(popupEdit);
-}
-
 function handlePlaceAddFormSubmit(evt) {
   evt.preventDefault();
   const newCard = {
@@ -97,8 +83,22 @@ function handlePlaceAddFormSubmit(evt) {
   closePopup(popupNewCard);
 }
 
+// Обработчик «отправки» формы
+function handleEditProfileFormSubmit(evt) {
+  evt.preventDefault(); // отмена стандартной отправки формы.
+  // О том, как это делать, расскажем позже.
+  const nameValue = nameInput.value;
+  const jobValue = jobInput.value;
+
+  profileName.textContent = nameValue;
+  profileJob.textContent = jobValue;
+  closePopup(popupEdit);
+}
+
 editButton.addEventListener("click", function () {
   openPopup(popupEdit); // попап редактирования профиля
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 });
 
 newCardButton.addEventListener("click", function () {
