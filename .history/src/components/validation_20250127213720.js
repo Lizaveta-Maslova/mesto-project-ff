@@ -82,7 +82,6 @@ const toggleButtonState = (inputList, buttonElement, validationConfig) => {
         // Внутри колбэка вызовем isValid,
         // передав ей форму и проверяемый элемент
         isValid(formElement, inputElement, validationConfig)
-        toggleButtonState(inputList, buttonElement, validationConfig);
       });
     });
   };

@@ -55,19 +55,18 @@ const hasInvalidInput = (inputList) => {
   // Функция принимает массив полей ввода
 // и элемент кнопки, состояние которой нужно менять
 
-const toggleButtonState = (inputList, buttonElement, validationConfig) => {
-    const  {inactiveButtonClass} = validationConfig;
-    // Если есть хотя бы один невалидный инпут
-    if (hasInvalidInput(inputList)) {
-      // сделай кнопку неактивной
-      buttonElement.disabled = true;
-      buttonElement.classList.add(inactiveButtonClass);
-    } else {
-      // иначе сделай кнопку активной
-      buttonElement.disabled = false;
-      buttonElement.classList.remove(inactiveButtonClass);
-    }
-  };
+const toggleButtonState = (inputList, buttonElement) => {
+  // Если есть хотя бы один невалидный инпут
+  if (hasInvalidInput(inputList)) {
+    // сделай кнопку неактивной
+    buttonElement.disabled = true;
+    buttonElement.classList.add('form__submit_inactive');
+  } else {
+    // иначе сделай кнопку активной
+    buttonElement.disabled = false;
+    buttonElement.classList.remove('form__submit_inactive');
+  }
+}; 
 
   const setEventListeners = (formElement, validationConfig) => {
     const  {inputSelector, submitButtonSelector} = validationConfig;
@@ -75,6 +74,7 @@ const toggleButtonState = (inputList, buttonElement, validationConfig) => {
     // сделаем из них массив методом Array.from
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     const buttonElement = formElement.querySelector(submitButtonSelector);
+    toggleButtonState(inputList, buttonElement, validationConfig);
     // Обойдём все элементы полученной коллекции
     inputList.forEach((inputElement) => {
       // каждому полю добавим обработчик события input
@@ -82,7 +82,6 @@ const toggleButtonState = (inputList, buttonElement, validationConfig) => {
         // Внутри колбэка вызовем isValid,
         // передав ей форму и проверяемый элемент
         isValid(formElement, inputElement, validationConfig)
-        toggleButtonState(inputList, buttonElement, validationConfig);
       });
     });
   };

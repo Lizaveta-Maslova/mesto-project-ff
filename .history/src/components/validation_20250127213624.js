@@ -75,6 +75,7 @@ const toggleButtonState = (inputList, buttonElement, validationConfig) => {
     // сделаем из них массив методом Array.from
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     const buttonElement = formElement.querySelector(submitButtonSelector);
+    toggleButtonState(inputList, buttonElement, validationConfig);
     // Обойдём все элементы полученной коллекции
     inputList.forEach((inputElement) => {
       // каждому полю добавим обработчик события input
@@ -82,7 +83,6 @@ const toggleButtonState = (inputList, buttonElement, validationConfig) => {
         // Внутри колбэка вызовем isValid,
         // передав ей форму и проверяемый элемент
         isValid(formElement, inputElement, validationConfig)
-        toggleButtonState(inputList, buttonElement, validationConfig);
       });
     });
   };
