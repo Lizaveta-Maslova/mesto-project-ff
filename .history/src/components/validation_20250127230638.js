@@ -17,7 +17,7 @@ const showInputError = (formElement, inputElement, errorMessage, validationConfi
     errorElement.classList.remove(errorClass);
     // Очистим ошибку
     errorElement.textContent = '';
-    console.log(inputElement);
+    console.log()
   };
 
 // Функция, которая проверяет валидность поля
