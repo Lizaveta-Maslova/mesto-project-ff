@@ -57,7 +57,7 @@
       });
   } 
    
-  //добавление новой карточки
+  //
   export const addNewCard = (name, link) => {
     return fetch(`${config.baseUrl}/cards`, {
       method: 'POST',

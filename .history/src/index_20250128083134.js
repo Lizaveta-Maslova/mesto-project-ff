@@ -84,39 +84,38 @@ function openPreviewPopup(name, link) {
   openPopup(previewPopup);
 }
 
-function handlePlaceAddFormSubmit(evt) { 
-  evt.preventDefault(); 
-  addNewCard(placeInput.value, urlInput.value).then(cardData => {
-    const newCard = { 
-      link: cardData.link, 
-      name: cardData.name, 
-    }; 
-    const cardPlace = createCard( 
-      newCard, 
-      removeCard, 
-      handleLike, 
-      openPreviewPopup 
-    ); 
-    placesList.prepend(cardPlace); 
-   
-    formAddPlace.reset(); 
-   
-    closePopup(popupNewCard); 
-  })
-  
-} 
+function handlePlaceAddFormSubmit(evt) {
+  evt.preventDefault();
+  addNewCard(urlInput.value, placeInput.value).then(userData)
+  const newCard = {
+    link: urlInput.value,
+    name: placeInput.value,
+  };
+  const cardPlace = createCard(
+    newCard,
+    removeCard,
+    handleLike,
+    openPreviewPopup
+  );
+  placesList.prepend(cardPlace);
+
+  formAddPlace.reset();
+
+  closePopup(popupNewCard);
+}
 
 // Обработчик «отправки» формы-1
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault(); // отмена стандартной отправки формы.
   // О том, как это делать, расскажем позже.
-  updateUserInfo(nameInput.value, jobInput.value).then(card => {
-  const nameValue = card.name;
-  const jobValue = card.about;
+  updateUserInfo(nameValue, jobValue).then(userData => {
+  const nameValue = userData.name;
+  const jobValue = userData.about;
   // const nameValue = nameInput.value;
   // const jobValue = jobInput.value;
-  profileName.textContent = nameValue;
-  profileJob.textContent = jobValue;
+
+  // profileName.textContent = nameValue;
+  // profileJob.textContent = jobValue;
   closePopup(popupEdit);
 })};
 
@@ -155,10 +154,10 @@ formAddPlace.addEventListener("submit", handlePlaceAddFormSubmit);
 enableValidation(validationConfig)
 
 //аватар, текстовые поля-имя, занятие - 1 функция
-getUserInfo().then(card => {
-  profileName.textContent = card.name;
-  profileJob.textContent = card.about;
-  profileImage.style.backgroundImage = `url(${card.avatar}`;
+getUserInfo().then(userData => {
+  profileName.textContent = userData.name;
+  profileJob.textContent = userData.about;
+  profileImage.style.backgroundImage = `url(${userData.avatar}`;
 })
 
 getUserInfo().then(data => console.log(data))

@@ -106,6 +106,26 @@ function handlePlaceAddFormSubmit(evt) {
   
 } 
 
+// function handlePlaceAddFormSubmit(evt) {
+//   evt.preventDefault();
+//   addNewCard(urlInput.value, placeInput.value).then(newCardData => {
+//     const newCard = {
+//       link: newCardData.link,
+//       name: newCardData.name,
+//     };
+//     const cardPlace = createCard(
+//       newCard,
+//       removeCard,
+//       handleLike,
+//       openPreviewPopup
+//     );
+//     placesList.prepend(cardPlace);
+  
+//     formAddPlace.reset();
+  
+//     closePopup(popupNewCard);
+// })}
+
 // Обработчик «отправки» формы-1
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault(); // отмена стандартной отправки формы.
