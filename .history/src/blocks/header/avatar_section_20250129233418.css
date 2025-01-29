@@ -1,0 +1,9 @@
+.avatar_section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar_section:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}

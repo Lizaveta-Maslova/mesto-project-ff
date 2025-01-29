@@ -1,0 +1,95 @@
+ 
+ const config = { 
+    baseUrl: "https://nomoreparties.co/v1/wff-cohort-31", 
+    headers: { 
+      authorization: "9bf2cfa8-31b3-4b3f-a018-20d566e04f8d", 
+      "Content-Type": "application/json", 
+    }, 
+  }; 
+
+  //аватар-1
+  export const getUserInfo = () => {
+    return fetch(`${config.baseUrl}/users/me`, {
+      headers: config.headers
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  } 
+   
+  //карточки-2
+  export const getInitialCards = () => {
+    return fetch(`${config.baseUrl}/cards`, {
+      headers: config.headers
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  } 
+
+  //обновление пользователя-3
+  export const updateUserInfo = (name, about) => {
+    return fetch(`${config.baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: config.headers,
+      body: JSON.stringify({
+        name: name,
+        about: about
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  } 
+   
+  //добавление новой карточки
+  export const addNewCard = (name, link) => {
+    return fetch(`${config.baseUrl}/cards`, {
+      method: 'POST',
+      headers: config.headers,
+      body: JSON.stringify({
+        name: name,
+        link: link
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  } 
+
+  //удаление карточки, которая создана мной
+  export const deleteCard = () => {
+    return fetch(`${config.baseUrl}/cards/9bf2cfa8-31b3-4b3f-a018-20d566e04f8d`, {
+      method: 'DELETE',
+      headers: config.headers,
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  } 
+  

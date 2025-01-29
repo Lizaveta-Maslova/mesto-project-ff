@@ -1,0 +1,7 @@
+.button_update_avatar {
+ display: none;
+}
+
+.button_update_avatar:hover {
+    visibility: visible;
+}

@@ -1,0 +1,21 @@
+
+.button_update_avatar {
+    width: 24px;
+    height: 24px;
+    background: transparent url('../../images/edit-icon.svg') center no-repeat;
+    background-size: 26px 26px;
+    border: none;
+    align-self: center;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    visibility: hidden; 
+    opacity: 0;
+    position: absolute;
+  }
+  
+  .button_update_avatar:hover {
+    visibility: visible;
+    opacity: 1;
+  } 
+  
