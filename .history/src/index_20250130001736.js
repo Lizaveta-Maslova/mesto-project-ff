@@ -114,12 +114,11 @@ function handlePlaceAddFormSubmit(evt) {
 
 function handleUpdateAvatarFormSubmit(evt) {
   evt.preventDefault();
-  updateAvatar().then(card => {
+  updateAvatar().then(userInfo => {
     profileImage.style.backgroundImage = `url(${card.avatar}`;
+  })
     updateAvatarForm.reset(); 
     closePopup(popupAvatar); 
-  })
-    
   }
 
 // Обработчик «отправки» формы-1
@@ -178,7 +177,7 @@ updateAvatarForm.addEventListener("submit", handleUpdateAvatarFormSubmit);
 enableValidation(validationConfig)
 
 //аватар, текстовые поля-имя, занятие - 1 функция
-getUserInfo(avatarInputLink).then(card => {
+getUserInfo().then(card => {
   profileName.textContent = card.name;
   profileJob.textContent = card.about;
   profileImage.style.backgroundImage = `url(${card.avatar}`;

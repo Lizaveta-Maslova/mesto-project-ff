@@ -114,12 +114,11 @@ function handlePlaceAddFormSubmit(evt) {
 
 function handleUpdateAvatarFormSubmit(evt) {
   evt.preventDefault();
-  updateAvatar().then(card => {
+  updateAvatar().then(userInfo => {
     profileImage.style.backgroundImage = `url(${card.avatar}`;
+  })
     updateAvatarForm.reset(); 
     closePopup(popupAvatar); 
-  })
-    
   }
 
 // Обработчик «отправки» формы-1

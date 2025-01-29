@@ -59,7 +59,7 @@ let myId = ''; //наш айди
 
 const avatarButton = document.querySelector('.button_update_avatar');
 const popupAvatar = document.querySelector('.popup_type_avatar');
-const avatarInputLink = document.querySelector('.popup__input_type_avatar_link')
+
 
  getInitialCards().then(cards => {
   cards.forEach(card => {
@@ -112,16 +112,6 @@ function handlePlaceAddFormSubmit(evt) {
   })
 } 
 
-function handleUpdateAvatarFormSubmit(evt) {
-  evt.preventDefault();
-  updateAvatar().then(card => {
-    profileImage.style.backgroundImage = `url(${card.avatar}`;
-    updateAvatarForm.reset(); 
-    closePopup(popupAvatar); 
-  })
-    
-  }
-
 // Обработчик «отправки» формы-1
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault(); // отмена стандартной отправки формы.
@@ -149,7 +139,7 @@ newCardButton.addEventListener("click", function () {
 });
 
 avatarButton.addEventListener("click", function () {
-  clearValidation(updateAvatarForm, validationConfig);
+  // clearValidation(updateAvatarForm, validationConfig);
   openPopup(popupAvatar); // открытие формы обновления аватарки
 })
 
@@ -173,12 +163,10 @@ editFormElement.addEventListener("submit", handleEditProfileFormSubmit);
 
 formAddPlace.addEventListener("submit", handlePlaceAddFormSubmit);
 
-updateAvatarForm.addEventListener("submit", handleUpdateAvatarFormSubmit);
-
 enableValidation(validationConfig)
 
 //аватар, текстовые поля-имя, занятие - 1 функция
-getUserInfo(avatarInputLink).then(card => {
+getUserInfo().then(card => {
   profileName.textContent = card.name;
   profileJob.textContent = card.about;
   profileImage.style.backgroundImage = `url(${card.avatar}`;
