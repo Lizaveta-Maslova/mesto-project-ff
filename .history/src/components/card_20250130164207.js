@@ -48,11 +48,11 @@ export const createCard = function (
 };
 
 // Функция - обработчик лайка
-export const handleLike = function (likeButton, id, cardLikeButton) {
+export const handleLike = function (likeButton, id, countElement) {
   const isLiked =likeButton.contains(card__like-button_is-active);
   likeCard(id,isLiked).then(card => {
     likeButton.classList.toggle("card__like-button_is-active");
-    cardLikeButton.textContent = card.likes.length;
+    cardLikeButton
   })
   
 };

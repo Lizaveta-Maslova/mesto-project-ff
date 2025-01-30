@@ -152,7 +152,7 @@ function handlePlaceAddFormSubmit(evt) {
 
 function handleUpdateAvatarFormSubmit(evt) {
   evt.preventDefault();
-  updateAvatar(avatarInputLink.value).then(card => {
+  updateAvatar(avatarInputLink).then(card => {
     profileImage.style.backgroundImage = `url(${card.avatar}`;
     updateAvatarForm.reset(); 
     closePopup(popupAvatar); 
