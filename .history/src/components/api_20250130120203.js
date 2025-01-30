@@ -20,7 +20,14 @@
     return fetch(`${config.baseUrl}/users/me`, {
       headers: config.headers
     })
-      .then(handleResponse);
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   } 
    
   //карточки-2
@@ -28,7 +35,14 @@
     return fetch(`${config.baseUrl}/cards`, {
       headers: config.headers
     })
-    .then(handleResponse);
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   } 
 
   //обновление пользователя-3
@@ -41,7 +55,14 @@
         about: about
       })
     })
-    .then(handleResponse);
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   } 
    
   //добавление новой карточки
@@ -54,7 +75,14 @@
         link: link
       })
     })
-    .then(handleResponse);
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   } 
 
   //удаление карточки, которая создана мной
@@ -63,7 +91,14 @@
       method: 'DELETE',
       headers: config.headers,
     })
-    .then(handleResponse);
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   } 
   
   export const likeCard = (id) => {
@@ -71,7 +106,14 @@
       method: 'PUT',
       headers: config.headers,
     })
-    .then(handleResponse);
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   } 
   
     //обновление аватара
@@ -83,5 +125,12 @@
           avatar: link
         })
       })
-      .then(handleResponse);
+        .then(res => {
+          if (res.ok) {
+            return res.json();
+          }
+    
+          // если ошибка, отклоняем промис
+          return Promise.reject(`Ошибка: ${res.status}`);
+        });
     } 

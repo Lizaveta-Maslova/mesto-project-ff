@@ -83,5 +83,5 @@
           avatar: link
         })
       })
-      .then(handleResponse);
+        
     } 
