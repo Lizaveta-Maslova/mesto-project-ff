@@ -53,7 +53,6 @@ const popupEdit = document.querySelector(".popup_type_edit");
 const popupNewCard = document.querySelector(".popup_type_new-card");
 
 const popupList = document.querySelectorAll(".popup");
-const saveButton = document.querySelectorAll(".save_button");
 
 let myId = ''; //наш айди
 // let userId = '';
@@ -65,31 +64,22 @@ console.log(avatarInputLink)
 
 
 //аватар, текстовые поля-имя, занятие - 1 функция
-// getUserInfo(avatarInputLink).then(card => {
-//   profileName.textContent = card.name;
-//   profileJob.textContent = card.about;
-//   profileImage.style.backgroundImage = `url(${card.avatar}`;
-//   myId = card._id;
-// })
-
-
-// getUserInfo().then(data => console.log(data))
-//  getInitialCards().then(cards => {
-//   cards.forEach(card => {
-//     const cardElement = createCard(card, removeCard, handleLike, openPreviewPopup, myId);
-//     placesList.append(cardElement);
-//   })
-//   })
-Promise.all([getUserInfo(), getInitialCards()]).then(([card, cards]) => {
+getUserInfo(avatarInputLink).then(card => {
   profileName.textContent = card.name;
   profileJob.textContent = card.about;
   profileImage.style.backgroundImage = `url(${card.avatar}`;
   myId = card._id;
-  cards.forEach(card => {
-      const cardElement = createCard(card, removeCard, handleLike, openPreviewPopup, myId);
-       placesList.append(cardElement);
-     })
 })
+
+
+getUserInfo().then(data => console.log(data))
+ getInitialCards().then(cards => {
+  cards.forEach(card => {
+    const cardElement = createCard(card, removeCard, handleLike, openPreviewPopup, myId);
+    placesList.append(cardElement);
+  })
+  })
+
   .catch((err) => { 
     console.log(`Что-то пошло не так. Ошибка: ${err}`); 
   })
@@ -118,19 +108,8 @@ function openPreviewPopup(name, link) {
   openPopup(previewPopup);
 }
 
-function renderLoading(saveButton, isLoading) { 
-  if (isLoading) { 
-    saveButton.textContent = "Сохранение..."; 
-    saveButton.disabled = true; 
-  } else { 
-    saveButton.textContent = "Сохранить"; 
-    saveButton.disabled = false; 
-  } 
-}
-
 function handlePlaceAddFormSubmit(evt) { 
-  evt.preventDefault();
-  renderLoading(saveButton, true) 
+  evt.preventDefault(); 
   addNewCard(placeInput.value, urlInput.value).then(cardData => {
     // const newCard = { 
     //   link: cardData.link, 
@@ -159,9 +138,6 @@ function handleUpdateAvatarFormSubmit(evt) {
     .catch((err) => { 
     console.log(`Что-то пошло не так. Ошибка: ${err}`); 
   })
-    .finally(() => { 
-    renderLoading(saveButton, false); 
-  });
   }
 
 // Обработчик «отправки» формы-1

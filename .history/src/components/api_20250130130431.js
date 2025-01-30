@@ -32,14 +32,13 @@
   } 
 
   //обновление пользователя-3
-  export const updateUserInfo = (name, about, avatar) => {
+  export const updateUserInfo = (name, about) => {
     return fetch(`${config.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: config.headers,
       body: JSON.stringify({
         name: name,
-        about: about,
-        avatar: avatar
+        about: about
       })
     })
     .then(handleResponse);
@@ -74,10 +73,9 @@
     })
     .then(handleResponse);
   } 
-
   export const unLikeCard = (id) => {
     return fetch(`${config.baseUrl}/cards/likes/${id}`, {
-      method: 'DELETE',
+      method: 'PUT',
       headers: config.headers,
     })
     .then(handleResponse);
@@ -85,7 +83,7 @@
   
     //обновление аватара
     export const updateAvatar = (link) => {
-      return fetch(`${config.baseUrl}/users/me/avatar`, {
+      return fetch(`${config.baseUrl}/cards`, {
         method: 'PATCH',
         headers: config.headers,
         body: JSON.stringify({

@@ -49,7 +49,7 @@ export const createCard = function (
 
 // Функция - обработчик лайка
 export const handleLike = function (likeButton) {
-  if (likeButton.classList.contains(card__like-button_is-active));
+  if (likeButton.classList.contains(card__like-button_is-active))
   likeButton.classList.toggle("card__like-button_is-active");
 };
 

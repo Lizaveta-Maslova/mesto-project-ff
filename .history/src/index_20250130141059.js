@@ -83,13 +83,14 @@ console.log(avatarInputLink)
 Promise.all([getUserInfo(), getInitialCards()]).then(([card, cards]) => {
   profileName.textContent = card.name;
   profileJob.textContent = card.about;
-  profileImage.style.backgroundImage = `url(${card.avatar}`;
-  myId = card._id;
-  cards.forEach(card => {
+   profileImage.style.backgroundImage = `url(${card.avatar}`;
+   myId = card._id;
+cards.forEach(card => {
       const cardElement = createCard(card, removeCard, handleLike, openPreviewPopup, myId);
        placesList.append(cardElement);
      })
 })
+
   .catch((err) => { 
     console.log(`Что-то пошло не так. Ошибка: ${err}`); 
   })

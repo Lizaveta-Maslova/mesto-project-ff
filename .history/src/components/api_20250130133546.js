@@ -85,7 +85,7 @@
   
     //обновление аватара
     export const updateAvatar = (link) => {
-      return fetch(`${config.baseUrl}/users/me/avatar`, {
+      return fetch(`${config.baseUrl}/users/me/avatar${id}`, {
         method: 'PATCH',
         headers: config.headers,
         body: JSON.stringify({

@@ -53,7 +53,6 @@ const popupEdit = document.querySelector(".popup_type_edit");
 const popupNewCard = document.querySelector(".popup_type_new-card");
 
 const popupList = document.querySelectorAll(".popup");
-const saveButton = document.querySelectorAll(".save_button");
 
 let myId = ''; //наш айди
 // let userId = '';
@@ -61,38 +60,24 @@ let myId = ''; //наш айди
 const avatarButton = document.querySelector('.button_update_avatar');
 const popupAvatar = document.querySelector('.popup_type_avatar');
 const avatarInputLink = document.querySelector('.popup__input_type_avatar_link')
-console.log(avatarInputLink)
+consol
 
 
 //аватар, текстовые поля-имя, занятие - 1 функция
-// getUserInfo(avatarInputLink).then(card => {
-//   profileName.textContent = card.name;
-//   profileJob.textContent = card.about;
-//   profileImage.style.backgroundImage = `url(${card.avatar}`;
-//   myId = card._id;
-// })
-
-
-// getUserInfo().then(data => console.log(data))
-//  getInitialCards().then(cards => {
-//   cards.forEach(card => {
-//     const cardElement = createCard(card, removeCard, handleLike, openPreviewPopup, myId);
-//     placesList.append(cardElement);
-//   })
-//   })
-Promise.all([getUserInfo(), getInitialCards()]).then(([card, cards]) => {
+getUserInfo(avatarInputLink).then(card => {
   profileName.textContent = card.name;
   profileJob.textContent = card.about;
   profileImage.style.backgroundImage = `url(${card.avatar}`;
   myId = card._id;
-  cards.forEach(card => {
-      const cardElement = createCard(card, removeCard, handleLike, openPreviewPopup, myId);
-       placesList.append(cardElement);
-     })
 })
-  .catch((err) => { 
-    console.log(`Что-то пошло не так. Ошибка: ${err}`); 
+
+getUserInfo().then(data => console.log(data))
+ getInitialCards().then(cards => {
+  cards.forEach(card => {
+    const cardElement = createCard(card, removeCard, handleLike, openPreviewPopup, myId);
+    placesList.append(cardElement);
   })
+  });
   
 // const renderCards = function (cardDataList, removeCard) {
 //   cardDataList.forEach(function (card) {
@@ -118,19 +103,8 @@ function openPreviewPopup(name, link) {
   openPopup(previewPopup);
 }
 
-function renderLoading(saveButton, isLoading) { 
-  if (isLoading) { 
-    saveButton.textContent = "Сохранение..."; 
-    saveButton.disabled = true; 
-  } else { 
-    saveButton.textContent = "Сохранить"; 
-    saveButton.disabled = false; 
-  } 
-}
-
 function handlePlaceAddFormSubmit(evt) { 
-  evt.preventDefault();
-  renderLoading(saveButton, true) 
+  evt.preventDefault(); 
   addNewCard(placeInput.value, urlInput.value).then(cardData => {
     // const newCard = { 
     //   link: cardData.link, 
@@ -151,24 +125,19 @@ function handlePlaceAddFormSubmit(evt) {
 
 function handleUpdateAvatarFormSubmit(evt) {
   evt.preventDefault();
-  updateAvatar(avatarInputLink).then(card => {
+  updateAvatar().then(card => {
     profileImage.style.backgroundImage = `url(${card.avatar}`;
     updateAvatarForm.reset(); 
     closePopup(popupAvatar); 
   })
-    .catch((err) => { 
-    console.log(`Что-то пошло не так. Ошибка: ${err}`); 
-  })
-    .finally(() => { 
-    renderLoading(saveButton, false); 
-  });
+    
   }
 
 // Обработчик «отправки» формы-1
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault(); // отмена стандартной отправки формы.
   // О том, как это делать, расскажем позже.
-  updateUserInfo(nameInput.value, jobInput.value, avatarInputLink.value).then(card => {
+  updateUserInfo(nameInput.value, jobInput.value).then(card => {
   const nameValue = card.name;
   const jobValue = card.about;
   // const nameValue = nameInput.value;
@@ -217,5 +186,7 @@ formAddPlace.addEventListener("submit", handlePlaceAddFormSubmit);
 
 updateAvatarForm.addEventListener("submit", handleUpdateAvatarFormSubmit);
 
-enableValidation(validationConfig);
+enableValidation(validationConfig)
+
+
 

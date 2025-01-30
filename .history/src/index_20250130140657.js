@@ -80,16 +80,8 @@ console.log(avatarInputLink)
 //     placesList.append(cardElement);
 //   })
 //   })
-Promise.all([getUserInfo(), getInitialCards()]).then(([card, cards]) => {
-  profileName.textContent = card.name;
-  profileJob.textContent = card.about;
-  profileImage.style.backgroundImage = `url(${card.avatar}`;
-  myId = card._id;
-  cards.forEach(card => {
-      const cardElement = createCard(card, removeCard, handleLike, openPreviewPopup, myId);
-       placesList.append(cardElement);
-     })
-})
+Promise.all()
+
   .catch((err) => { 
     console.log(`Что-то пошло не так. Ошибка: ${err}`); 
   })

@@ -1,4 +1,4 @@
-import {deleteCard,  likeCard, unLikeCard} from './api'
+import {deleteCard} from './api'
 
 // Функция создания карточки
 export const createCard = function (
@@ -31,7 +31,7 @@ export const createCard = function (
 
   //Обработчик для кнопки удаления
   deleteButton.addEventListener("click", function () {
-    removeCard(cardElement, card._id); //добавила id карточке, чтобы сервер знал, что именно нужно удалить с сервера.
+    removeCard(cardElement);
   });
 
   // Обработчик для лайка
@@ -49,16 +49,13 @@ export const createCard = function (
 
 // Функция - обработчик лайка
 export const handleLike = function (likeButton) {
-  if (likeButton.classList.contains(card__like-button_is-active));
   likeButton.classList.toggle("card__like-button_is-active");
 };
 
 // Функция удаления карточки
 export const removeCard = function (cardElement, id) {
-  deleteCard(id).then(() => {
-    cardElement.remove();
+  deleteCard(id).then(cardElement => {
+    
   })
-  .catch((err) => { 
-    console.log(`Что-то пошло не так. Ошибка: ${err}`); 
-  })
+  cardElement.remove();
 };

@@ -89,7 +89,7 @@
         method: 'PATCH',
         headers: config.headers,
         body: JSON.stringify({
-          avatar: link
+          avatar
         })
       })
       .then(handleResponse);
