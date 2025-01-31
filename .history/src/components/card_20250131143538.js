@@ -56,37 +56,44 @@ export const createCard = function (
   
 // };
 // Функция - обработчик лайка
-export const handleLike = function (likeButton, cardLikeNumber, id) {
+export const handleLike = function (likeButton, cardLikeNumber, cardId) {
   // Проверяем, есть ли класс 'card__like-button_is-active'
   const isLiked = likeButton.classList.contains("card__like-button_is-active");
 
   if (isLiked) {
     // Если класс есть, вызываем unLikeCard
-    unLikeCard(id)
+    unLikeCard(cardId) // Убедитесь, что cardId правильно передается
       .then(card => {
-        // Успешное выполнение запроса
-        likeButton.classList.remove("card__like-button_is-active");
-        // Обновляем количество лайков
-        cardLikeNumber.textContent = card.likes.length;
+        if (card && Array.isArray(card.likes)) { // Проверка на наличие likes
+          // Успешное выполнение запроса
+          likeButton.classList.remove("card__like-button_is-active");
+          // Обновляем количество лайков
+          cardLikeNumber.textContent = card.likes.length;
+        } else {
+          console.error('Ошибка: Неверный формат ответа от сервера при удалении лайка');
+        }
       })
       .catch(err => {
         console.error('Ошибка при удалении лайка:', err);
       });
   } else {
     // Если класса нет, вызываем likeCard
-    likeCard(id)
+    likeCard(cardId) // Убедитесь, что cardId правильно передается
       .then(card => {
-        // Успешное выполнение запроса
-        likeButton.classList.add("card__like-button_is-active");
-        // Обновляем количество лайков
-        cardLikeNumber.textContent = card.likes.length;
+        if (card && Array.isArray(card.likes)) { // Проверка на наличие likes
+          // Успешное выполнение запроса
+          likeButton.classList.add("card__like-button_is-active");
+          // Обновляем количество лайков
+          cardLikeNumber.textContent = card.likes.length;
+        } else {
+          console.error('Ошибка: Неверный формат ответа от сервера при добавлении лайка');
+        }
       })
       .catch(err => {
         console.error('Ошибка при добавлении лайка:', err);
       });
   }
 };
-
 // Функция удаления карточки
 export const removeCard = function (cardElement, id) {
   deleteCard(id).then(() => {

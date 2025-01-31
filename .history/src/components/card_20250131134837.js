@@ -27,7 +27,7 @@ export const createCard = function (
   cardImage.src = card.link;
   cardImage.alt = card.name;
   cardTitle.textContent = card.name;
-  cardLikeNumber.textContent = card.likes.length;
+  // cardLikeNumber.textContent = card.likes.length;
 
   //Обработчик для кнопки удаления
   deleteButton.addEventListener("click", function () {
@@ -56,13 +56,13 @@ export const createCard = function (
   
 // };
 // Функция - обработчик лайка
-export const handleLike = function (likeButton, cardLikeNumber, id) {
+export const handleLike = function (likeButton, cardLikeNumber, cardId) {
   // Проверяем, есть ли класс 'card__like-button_is-active'
   const isLiked = likeButton.classList.contains("card__like-button_is-active");
 
   if (isLiked) {
     // Если класс есть, вызываем unLikeCard
-    unLikeCard(id)
+    unLikeCard(cardId)
       .then(card => {
         // Успешное выполнение запроса
         likeButton.classList.remove("card__like-button_is-active");
@@ -74,7 +74,7 @@ export const handleLike = function (likeButton, cardLikeNumber, id) {
       });
   } else {
     // Если класса нет, вызываем likeCard
-    likeCard(id)
+    likeCard(cardId)
       .then(card => {
         // Успешное выполнение запроса
         likeButton.classList.add("card__like-button_is-active");

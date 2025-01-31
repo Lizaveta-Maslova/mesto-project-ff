@@ -85,6 +85,7 @@ export const handleLike = function (likeButton, cardLikeNumber, id) {
         console.error('Ошибка при добавлении лайка:', err);
       });
   }
+  console.log(Userid)
 };
 
 // Функция удаления карточки

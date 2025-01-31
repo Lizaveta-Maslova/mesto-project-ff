@@ -74,7 +74,7 @@ export const handleLike = function (likeButton, cardLikeNumber, id) {
       });
   } else {
     // Если класса нет, вызываем likeCard
-    likeCard(id)
+    likeCard(userId)
       .then(card => {
         // Успешное выполнение запроса
         likeButton.classList.add("card__like-button_is-active");

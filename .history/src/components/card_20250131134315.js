@@ -47,44 +47,14 @@ export const createCard = function (
   return cardElement; // возвращаем карточку
 };
 
-// // Функция - обработчик лайка
-// export const handleLike = function (likeButton, cardLikeNumber) {
-//   const isLiked =likeButton.contains(card__like-button_is-active);
-//   likeCard(id).then(card => {
-//     likeButton.classList.toggle("card__like-button_is-active");
-//   })
-  
-// };
 // Функция - обработчик лайка
-export const handleLike = function (likeButton, cardLikeNumber, id) {
-  // Проверяем, есть ли класс 'card__like-button_is-active'
-  const isLiked = likeButton.classList.contains("card__like-button_is-active");
-
-  if (isLiked) {
-    // Если класс есть, вызываем unLikeCard
-    unLikeCard(id)
-      .then(card => {
-        // Успешное выполнение запроса
-        likeButton.classList.remove("card__like-button_is-active");
-        // Обновляем количество лайков
-        cardLikeNumber.textContent = card.likes.length;
-      })
-      .catch(err => {
-        console.error('Ошибка при удалении лайка:', err);
-      });
-  } else {
-    // Если класса нет, вызываем likeCard
-    likeCard(id)
-      .then(card => {
-        // Успешное выполнение запроса
-        likeButton.classList.add("card__like-button_is-active");
-        // Обновляем количество лайков
-        cardLikeNumber.textContent = card.likes.length;
-      })
-      .catch(err => {
-        console.error('Ошибка при добавлении лайка:', err);
-      });
-  }
+export const handleLike = function (likeButton, cardLikeNumber) {
+  const isLiked =likeButton.contains(card__like-button_is-active);
+  
+  likeCard(id).then(card => {
+    likeButton.classList.toggle("card__like-button_is-active");
+  })
+  
 };
 
 // Функция удаления карточки

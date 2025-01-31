@@ -39,6 +39,15 @@ export const createCard = function (
     handleLike(likeButton, cardLikeNumber, card.id);
   });
 
+  likeCount.textContent = 
+    cardData.card.likes.length === 0 ? "0" : cardData.card.likes.length; 
+  if ( 
+    cardData.card.likes.some((like) => { 
+      return like._id === ownerId; 
+    }) 
+  ) { 
+    likeBtn.classList.add("card__like-button_is-active"); 
+  } 
   // Обработчик для открытия попапа с изображением
   cardImage.addEventListener("click", function () {
     openPreviewPopup(card.name, card.link);
@@ -47,44 +56,14 @@ export const createCard = function (
   return cardElement; // возвращаем карточку
 };
 
-// // Функция - обработчик лайка
-// export const handleLike = function (likeButton, cardLikeNumber) {
-//   const isLiked =likeButton.contains(card__like-button_is-active);
-//   likeCard(id).then(card => {
-//     likeButton.classList.toggle("card__like-button_is-active");
-//   })
-  
-// };
 // Функция - обработчик лайка
-export const handleLike = function (likeButton, cardLikeNumber, id) {
-  // Проверяем, есть ли класс 'card__like-button_is-active'
-  const isLiked = likeButton.classList.contains("card__like-button_is-active");
-
-  if (isLiked) {
-    // Если класс есть, вызываем unLikeCard
-    unLikeCard(id)
-      .then(card => {
-        // Успешное выполнение запроса
-        likeButton.classList.remove("card__like-button_is-active");
-        // Обновляем количество лайков
-        cardLikeNumber.textContent = card.likes.length;
-      })
-      .catch(err => {
-        console.error('Ошибка при удалении лайка:', err);
-      });
-  } else {
-    // Если класса нет, вызываем likeCard
-    likeCard(id)
-      .then(card => {
-        // Успешное выполнение запроса
-        likeButton.classList.add("card__like-button_is-active");
-        // Обновляем количество лайков
-        cardLikeNumber.textContent = card.likes.length;
-      })
-      .catch(err => {
-        console.error('Ошибка при добавлении лайка:', err);
-      });
-  }
+export const handleLike = function (likeButton, id, cardLikeNumber) {
+  const isLiked =likeButton.contains(card__like-button_is-active);
+  likeCard(id,isLiked).then(card => {
+    likeButton.classList.toggle("card__like-button_is-active");
+    cardLikeButton.textContent = card.likes.length;
+  })
+  
 };
 
 // Функция удаления карточки

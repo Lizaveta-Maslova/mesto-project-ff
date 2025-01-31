@@ -56,13 +56,13 @@ export const createCard = function (
   
 // };
 // Функция - обработчик лайка
-export const handleLike = function (likeButton, cardLikeNumber, id) {
+export const handleLike = function (likeButton, cardLikeNumber, cardId) {
   // Проверяем, есть ли класс 'card__like-button_is-active'
   const isLiked = likeButton.classList.contains("card__like-button_is-active");
 
   if (isLiked) {
     // Если класс есть, вызываем unLikeCard
-    unLikeCard(id)
+    unLikeCard(like._id)
       .then(card => {
         // Успешное выполнение запроса
         likeButton.classList.remove("card__like-button_is-active");
@@ -74,7 +74,7 @@ export const handleLike = function (likeButton, cardLikeNumber, id) {
       });
   } else {
     // Если класса нет, вызываем likeCard
-    likeCard(id)
+    likeCard(card.id)
       .then(card => {
         // Успешное выполнение запроса
         likeButton.classList.add("card__like-button_is-active");
