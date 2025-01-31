@@ -173,7 +173,7 @@ function handleUpdateAvatarFormSubmit(evt) {
     console.log(`Что-то пошло не так. Ошибка: ${err}`); 
   })
     .finally(() => { 
-    renderLoading(saveButton, false); 
+    // renderLoading(saveButton, false); 
     // saveButton.textContent = 'Сохранить'
   });
   }

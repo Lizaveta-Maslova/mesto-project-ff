@@ -53,7 +53,7 @@ const popupEdit = document.querySelector(".popup_type_edit");
 const popupNewCard = document.querySelector(".popup_type_new-card");
 
 const popupList = document.querySelectorAll(".popup");
-// const saveButton = document.querySelectorAll(".save_button");
+const saveButton = document.querySelectorAll(".save_button");
 
 let myId = ''; //наш айди
 // let userId = '';
@@ -133,8 +133,7 @@ function renderLoading(saveButton, isLoading) {
 function handlePlaceAddFormSubmit(evt) { 
   evt.preventDefault();
   const saveButton = formAddPlace.querySelector('.save_button');
-  saveButton.textContent = 'Сохранение...';
-  renderLoading(saveButton, true); 
+  renderLoading(saveButton, true) 
   addNewCard(placeInput.value, urlInput.value).then(cardData => {
     // const newCard = { 
     //   link: cardData.link, 
@@ -151,19 +150,10 @@ function handlePlaceAddFormSubmit(evt) {
     formAddPlace.reset(); 
     closePopup(popupNewCard); 
   })
-  .catch((err) => { 
-    console.log(`Что-то пошло не так. Ошибка: ${err}`); 
-  })
-    .finally(() => { 
-    renderLoading(saveButton, false); 
-  });
 } 
 // Обработчик «отправки» формы-2
 function handleUpdateAvatarFormSubmit(evt) {
   evt.preventDefault();
-  const saveButton = updateAvatarForm.querySelector('.save_button');
-  saveButton.textContent = 'Сохранение...';
-  renderLoading(saveButton, true);
   updateAvatar(avatarInputLink.value).then(card => {
     profileImage.style.backgroundImage = `url(${card.avatar}`;
     updateAvatarForm.reset(); 
@@ -174,16 +164,12 @@ function handleUpdateAvatarFormSubmit(evt) {
   })
     .finally(() => { 
     renderLoading(saveButton, false); 
-    // saveButton.textContent = 'Сохранить'
   });
   }
 
 // Обработчик «отправки» формы-3
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault(); // отмена стандартной отправки формы.
-  const saveButton = editFormElement.querySelector('.save_button');
-  saveButton.textContent = 'Сохранение...';
-  renderLoading(saveButton, true);
   // О том, как это делать, расскажем позже.
   updateUserInfo(nameInput.value, jobInput.value, avatarInputLink.value).then(card => {
   const nameValue = card.name;
@@ -193,14 +179,7 @@ function handleEditProfileFormSubmit(evt) {
   profileName.textContent = nameValue;
   profileJob.textContent = jobValue;
   closePopup(popupEdit);
-})
-.catch((err) => { 
-  console.log(`Что-то пошло не так. Ошибка: ${err}`); 
-})
-  .finally(() => { 
-  renderLoading(saveButton, false); 
-});
-};
+})};
 
 editButton.addEventListener("click", function () {
   clearValidation(editFormElement, validationConfig);

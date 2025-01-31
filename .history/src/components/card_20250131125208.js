@@ -15,7 +15,7 @@ export const createCard = function (
   const cardTitle = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
-  const cardLikeNumber = cardElement.querySelector('.card__like-number');
+  const cardLikeButton = cardElement.querySelector('.card__like-number');
 
   // Проверяем, кто создал карточку
   if (userId !== card.owner._id) {

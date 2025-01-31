@@ -174,7 +174,6 @@ function handleUpdateAvatarFormSubmit(evt) {
   })
     .finally(() => { 
     renderLoading(saveButton, false); 
-    // saveButton.textContent = 'Сохранить'
   });
   }
 

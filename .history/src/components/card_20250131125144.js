@@ -27,7 +27,7 @@ export const createCard = function (
   cardImage.src = card.link;
   cardImage.alt = card.name;
   cardTitle.textContent = card.name;
-  cardLikeNumber.textContent = card.likes.length;
+  cardLikeButton.textContent = card.likes.length;
 
   //Обработчик для кнопки удаления
   deleteButton.addEventListener("click", function () {
@@ -36,7 +36,7 @@ export const createCard = function (
 
   // Обработчик для лайка
   likeButton.addEventListener("click", function () {
-    handleLike(likeButton);
+    handleLike(likeButton,);
   });
 
   // Обработчик для открытия попапа с изображением

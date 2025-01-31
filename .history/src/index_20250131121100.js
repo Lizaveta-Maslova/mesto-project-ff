@@ -174,7 +174,6 @@ function handleUpdateAvatarFormSubmit(evt) {
   })
     .finally(() => { 
     renderLoading(saveButton, false); 
-    // saveButton.textContent = 'Сохранить'
   });
   }
 
@@ -193,14 +192,7 @@ function handleEditProfileFormSubmit(evt) {
   profileName.textContent = nameValue;
   profileJob.textContent = jobValue;
   closePopup(popupEdit);
-})
-.catch((err) => { 
-  console.log(`Что-то пошло не так. Ошибка: ${err}`); 
-})
-  .finally(() => { 
-  renderLoading(saveButton, false); 
-});
-};
+})};
 
 editButton.addEventListener("click", function () {
   clearValidation(editFormElement, validationConfig);
