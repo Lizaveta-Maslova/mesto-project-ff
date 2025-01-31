@@ -36,7 +36,7 @@ export const createCard = function (
 
   // Обработчик для лайка
   likeButton.addEventListener("click", function () {
-    handleLike(likeButton, cardLikeNumber, card._id);
+    handleLike(likeButton, cardLikeNumber, card.id);
   });
 
   // Обработчик для открытия попапа с изображением
@@ -63,7 +63,7 @@ export const handleLike = function (likeButton, cardLikeNumber, id) {
   if (isLiked) {
     // Если класс есть, вызываем unLikeCard
     unLikeCard(id)
-      .then(card => {
+      .then(cardю => {
         // Успешное выполнение запроса
         likeButton.classList.remove("card__like-button_is-active");
         // Обновляем количество лайков
@@ -85,7 +85,6 @@ export const handleLike = function (likeButton, cardLikeNumber, id) {
         console.error('Ошибка при добавлении лайка:', err);
       });
   }
-
 };
 
 // Функция удаления карточки

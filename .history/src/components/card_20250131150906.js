@@ -36,7 +36,7 @@ export const createCard = function (
 
   // Обработчик для лайка
   likeButton.addEventListener("click", function () {
-    handleLike(likeButton, cardLikeNumber, card._id);
+    handleLike(likeButton, cardLikeNumber, id);
   });
 
   // Обработчик для открытия попапа с изображением
@@ -85,7 +85,6 @@ export const handleLike = function (likeButton, cardLikeNumber, id) {
         console.error('Ошибка при добавлении лайка:', err);
       });
   }
-
 };
 
 // Функция удаления карточки

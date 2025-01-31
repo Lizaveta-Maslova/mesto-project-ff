@@ -36,7 +36,7 @@ export const createCard = function (
 
   // Обработчик для лайка
   likeButton.addEventListener("click", function () {
-    handleLike(likeButton, cardLikeNumber, card._id);
+    handleLike(likeButton, cardLikeNumber, card.id);
   });
 
   // Обработчик для открытия попапа с изображением
@@ -56,14 +56,14 @@ export const createCard = function (
   
 // };
 // Функция - обработчик лайка
-export const handleLike = function (likeButton, cardLikeNumber, id) {
+export const handleLike = function (likeButton, cardLikeNumber, myId) {
   // Проверяем, есть ли класс 'card__like-button_is-active'
   const isLiked = likeButton.classList.contains("card__like-button_is-active");
 
   if (isLiked) {
     // Если класс есть, вызываем unLikeCard
-    unLikeCard(id)
-      .then(card => {
+    unLikeCard(myId)
+      .then(card.myId => {
         // Успешное выполнение запроса
         likeButton.classList.remove("card__like-button_is-active");
         // Обновляем количество лайков
@@ -74,8 +74,8 @@ export const handleLike = function (likeButton, cardLikeNumber, id) {
       });
   } else {
     // Если класса нет, вызываем likeCard
-    likeCard(id)
-      .then(card => {
+    likeCard(myId)
+      .then(card.myId => {
         // Успешное выполнение запроса
         likeButton.classList.add("card__like-button_is-active");
         // Обновляем количество лайков
@@ -85,7 +85,6 @@ export const handleLike = function (likeButton, cardLikeNumber, id) {
         console.error('Ошибка при добавлении лайка:', err);
       });
   }
-
 };
 
 // Функция удаления карточки
