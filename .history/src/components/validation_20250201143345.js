@@ -101,7 +101,6 @@ const toggleButtonState = (inputList, buttonElement, validationConfig) => {
     });
   };
   
-
 export const clearValidation = (formElement, validationConfig) => { 
   const { inputSelector, submitButtonSelector, inactiveButtonClass } = validationConfig; 
   const inputList = Array.from(formElement.querySelectorAll(inputSelector)); 
@@ -111,14 +110,7 @@ export const clearValidation = (formElement, validationConfig) => {
       hideInputError(formElement, input, validationConfig);
       input.setCustomValidity(""); // Удаляем кастомное сообщение об ошибке
   }); 
-  
-  buttonElement.classList.add(inactiveButtonClass); 
-  // buttonElement.disabled = true; 
-  if (formElement) { // Если форма валидна
-    buttonElement.classList.remove(inactiveButtonClass); // Убираем класс неактивности
-    buttonElement.disabled = false; // Делаем кнопку активной
-} else {
-    buttonElement.classList.add(inactiveButtonClass); // Добавляем класс неактивности
-    buttonElement.disabled = true; // Делаем кнопку неактивной
-}
+  const saveButton=
+  buttonElement.classList.add(saveButton); 
+  buttonElement.disabled = true; 
 }

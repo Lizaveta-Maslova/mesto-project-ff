@@ -114,7 +114,7 @@ export const clearValidation = (formElement, validationConfig) => {
   
   buttonElement.classList.add(inactiveButtonClass); 
   // buttonElement.disabled = true; 
-  if (formElement) { // Если форма валидна
+  if (form) { // Если форма валидна
     buttonElement.classList.remove(inactiveButtonClass); // Убираем класс неактивности
     buttonElement.disabled = false; // Делаем кнопку активной
 } else {
