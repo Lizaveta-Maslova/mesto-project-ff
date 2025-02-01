@@ -19,8 +19,7 @@ export const createCard = function (
 
   // Проверяем, кто создал карточку
   if (userId !== card.owner._id) {
-    // Если карточка создана текущим пользователем, показываем кнопку удаления
-    deleteButton.style.display = 'none';
+    deleteButton.style.display = 'none'; // Скрываем кнопку удаления, если карточка не принадлежит пользователю
   }
 
   // Наполняем содержимым
@@ -32,13 +31,12 @@ export const createCard = function (
   // Проверяем, лайкал ли текущий пользователь карточку
   const userHasLiked = card.likes.some(like => like._id === userId);
   if (userHasLiked) {
-    likeButton.classList.add('card__like-button_is-active');
-     // Добавляем класс для активного состояния кнопки лайка
+    likeButton.classList.add('card__like-button_active'); // Добавляем класс для активного состояния кнопки лайка
   }
 
-  //Обработчик для кнопки удаления
+  // Обработчик для кнопки удаления
   deleteButton.addEventListener("click", function () {
-    removeCard(cardElement, card._id); //добавила id карточке, чтобы сервер знал, что именно нужно удалить с сервера.
+    removeCard(cardElement, card._id); // Удаляем карточку
   });
 
   // Обработчик для лайка
@@ -51,7 +49,7 @@ export const createCard = function (
     openPreviewPopup(card.name, card.link);
   });
 
-  return cardElement; // возвращаем карточку
+  return cardElement; // Возвращаем карточку
 };
 
 // // Функция - обработчик лайка

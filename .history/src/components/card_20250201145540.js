@@ -32,8 +32,7 @@ export const createCard = function (
   // Проверяем, лайкал ли текущий пользователь карточку
   const userHasLiked = card.likes.some(like => like._id === userId);
   if (userHasLiked) {
-    likeButton.classList.add('card__like-button_is-active');
-     // Добавляем класс для активного состояния кнопки лайка
+    likeButton.classList.add('card__like-button_active'); // Добавляем класс для активного состояния кнопки лайка
   }
 
   //Обработчик для кнопки удаления
