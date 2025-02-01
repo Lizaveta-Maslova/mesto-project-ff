@@ -82,11 +82,11 @@ const avatarInputLink = document.querySelector('.popup__input_type_avatar_link')
 
 Promise.all([getUserInfo(), getInitialCards()]).then(([userInfo, cards]) => {
   profileName.textContent = userInfo.name;
-  profileJob.textContent = userInfo.about;
-  profileImage.style.backgroundImage = `url(${userInfo.avatar}`;
-  myId = userInfo._id;
-  cards.forEach(userInfo => {
-      const cardElement = createCard(userInfo, removeCard, handleLike, openPreviewPopup, myId);
+  profileJob.textContent = card.about;
+  profileImage.style.backgroundImage = `url(${card.avatar}`;
+  myId = card._id;
+  cards.forEach(card => {
+      const cardElement = createCard(card, removeCard, handleLike, openPreviewPopup, myId);
        placesList.append(cardElement);
      })
 })

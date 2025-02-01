@@ -86,7 +86,7 @@ Promise.all([getUserInfo(), getInitialCards()]).then(([userInfo, cards]) => {
   profileImage.style.backgroundImage = `url(${userInfo.avatar}`;
   myId = userInfo._id;
   cards.forEach(userInfo => {
-      const cardElement = createCard(userInfo, removeCard, handleLike, openPreviewPopup, myId);
+      const cardElement = createCard(card, removeCard, handleLike, openPreviewPopup, myId);
        placesList.append(cardElement);
      })
 })
