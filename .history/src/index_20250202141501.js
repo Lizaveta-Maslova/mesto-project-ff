@@ -205,7 +205,6 @@ editButton.addEventListener("click", function () {
   openPopup(popupEdit); // попап редактирования профиля
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  clearValidation(editFormElement, validationConfig);
 });
 
 newCardButton.addEventListener("click", function () {

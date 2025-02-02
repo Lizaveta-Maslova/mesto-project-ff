@@ -112,7 +112,7 @@ export const clearValidation = (formElement, validationConfig) => {
       input.setCustomValidity(""); // Удаляем кастомное сообщение об ошибке
       toggleButtonState(inputList, buttonElement, validationConfig);
   }); 
-}
+  
 //   buttonElement.classList.add(inactiveButtonClass); 
 //   // buttonElement.disabled = true; 
 //   if (!(hasInvalidInput(inputList))) {
